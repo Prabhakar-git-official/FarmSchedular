@@ -5,7 +5,7 @@ import MyAlgoConnect from '@randlabs/myalgo-connect';
 // import { ToastContainer, Toast, Zoom, Bounce, toast} from 'react-toastify';
 
 // import cifi from "../public/cifi.jfif"
-
+import node from './nodeapi.json';
 const myAlgoWallet = new MyAlgoConnect();
 const App = () => {
    const [toaddress,setToaddress] = useState("");
@@ -28,7 +28,9 @@ const App = () => {
     
     //let algodclient = new algosdk.Algodv2(token, server, port);
 
-    const algodclient = new algosdk.Algodv2('', 'https://api.testnet.algoexplorer.io', '');
+    //const algodclient = new algosdk.Algodv2('', 'https://api.testnet.algoexplorer.io', '');
+    const algodClientGet = new algosdk.Algodv2('', node['algodclient'], '');
+    const algodclient = new algosdk.Algodv2('', node['algodclient'], '');
     
     const waitForConfirmation = async function (algodclient, txId) {
         let response = await algodclient.status().do();
@@ -78,11 +80,11 @@ const App = () => {
         console.log("blockRound", blockRound)
         // get the parameters of the current block round
              let fetchOption = "GET";
-             let  url = "https://api.testnet.algoexplorer.io/v2/transactions/params";
+             let  url = "https://testnet-api.algonode.cloud";
 
-             const getParamsURL = "https://api.testnet.algoexplorer.io/v2/transactions/params";
+             const getParamsURL = "https://testnet-api.algonode.cloud";
 
-const posturl = "https://api.testnet.algoexplorer.io/v2/transactions";
+const posturl = "https://testnet-api.algonode.cloud/v2/transactions";
 
 //Function to GET and POST transactions
 
